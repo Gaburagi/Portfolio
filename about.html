@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About - Portfolio</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/Sprite-0002.gif" alt="Logo">
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul> -->
+    </nav>
+
+    <div class="page-navigation">
+        <a href="index.html" class="nav-button">← Home</a>
+        <a href="projects.html" class="nav-button">Projects →</a>
+    </div>
+
+    <main class="about-content">
+        <section class="profile-section fade-in">
+            <img src="assets/poopoowow.jpg" alt="Profile" class="profile-image">
+            <div class="profile-text">
+                <h1>About Me</h1>
+                <p>Hello! I'm Gabriel, a passionate student developer based in the Philippines.
+                I specialize in creating unique digital experiences that combine creativity with functionality.</p>
+            </div>
+        </section>
+
+        <section class="journey-section fade-in">
+            <h2 class="section-title">My Journey</h2>
+            <p>I only started my coding journey recently in my first year of collegy, and since then, I've been constantly learning and evolving.
+            Taking up the program Computer Science has given me a unique perspective on problem-solving and design.</p>
+        </section>
+
+        <section class="skills-section fade-in">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-card-front">
+                            <h3>Frontend</h3>
+                            <img src="assets/frontend.gif" alt="Frontend" class="skill-icon">
+                        </div>
+                        <div class="skill-card-back">
+                            <h3>Technologies</h3>
+                            <ul>
+                                <li>HTML5 & CSS3</li>
+                                <li>JavaScript</li>
+                                <li>Responsive Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-card-front">
+                            <h3>Backend</h3>
+                            <img src="assets/backend.gif" alt="Backend" class="skill-icon">
+                        </div>
+                        <div class="skill-card-back">
+                            <h3>Technologies</h3>
+                            <ul>
+                                <li>Python</li>
+                                <li>SQL</li>
+                                <li>GD Script</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-inner">
+                        <div class="skill-card-front">
+                            <h3>Design</h3>
+                            <img src="assets/design.gif" alt="Design" class="skill-icon">
+                        </div>
+                        <div class="skill-card-back">
+                            <h3>Tools</h3>
+                            <ul>
+                                <li>Figma</li>
+                                <li>Canva</li>
+                                <li>Aseprite - Ibispaint</li>
+                                <li>UI/UX Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interests-section fade-in">
+    <h2 class="section-title">Beyond Coding</h2>
+    <div class="interests-content">
+        <p>When I'm not coding, you can find me playing video games or at the gym.</p>
+        <div class="interest-gif-container">
+            <img src="assets/monkey-dance-gif-956287.gif" alt="Hobby Animation" class="interest-gif">
+        </div>
+    </div>
+</section>
+    </main>
+
+    <script>
+        // Navbar toggle
+        const toggle = document.getElementById('navbar-toggle');
+        const links = document.getElementById('navbar-links');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

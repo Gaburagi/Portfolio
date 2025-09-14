@@ -1,0 +1,1050 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'minecraft';
+    src: url(fonts/Minecraft.ttf) format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'monster';
+    src: url(fonts/MonsterFriendFore.otf) format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Set default font */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+	margin: 0;
+	background-color: #000000;
+	color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #000000;
+	border-radius: 1px;
+	padding: 0.1rem 2rem;
+	color: #fff;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar-logo img {
+    height: 75px; /* adjust based on your GIF size */
+    width: auto;
+    object-fit: contain;
+}
+
+.navbar-links {
+	list-style: none;
+	display: flex;
+	gap: 4.5rem;
+	margin: 0;
+	padding: 0;
+}
+.navbar-links li a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1rem;
+	transition: color 0.2s;
+	font-family: minecraft;
+	letter-spacing: 1px;
+}
+.navbar-links li a:hover {
+	color: #b8b8b8;
+}
+
+/* Remove hover effect from navbar logo */
+.navbar-logo:hover {
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Responsive Navbar */
+.navbar-toggle {
+	display: none;
+}
+
+/* Hero Section */
+.hero {
+    height: 120vh; /* Adjust this value to make it smaller (e.g., 80vh, 70vh) */
+    width: 100%;
+    position: relative;
+    background-image: 
+        linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000000f2 100%),
+        url('assets/heroMain.gif');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-content {
+    padding: 2rem;
+    margin-top: 300px; /* Adjust this value to move text down more or less */
+    border-radius: 10px;
+}
+
+.hero-content h1 {
+    font-family: 'monster';
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1s ease-out forwards;
+    opacity: 0;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+	font-family: 'minecraft';
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #000000c1;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'minecraft';
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+	color: rgb(0, 0, 0);
+    transform: translateY(-2px);
+}
+
+/* About section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin: 4rem 0;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(117, 239, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.profile-text h1 {
+    font-family: 'minecraft', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.profile-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #fff;
+    font-family: 'minecraft', sans-serif;
+    opacity: 0.9;
+}
+
+/* About Page Styles */
+.about-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin: 4rem 0;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.826);
+}
+
+.section-title {
+    font-family: 'monster', sans-serif;
+    font-size: 2rem;
+    margin: 3rem 0 1.5rem;
+    color: #ffffff;
+}
+
+/* Skills Section Styles */
+.skills-section {
+    padding: 4rem 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 5rem;
+    margin: 3rem 0;
+}
+
+.skill-card {
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.skill-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.skill-card:hover .skill-card-inner {
+    transform: rotateY(180deg);
+}
+
+.skill-card-front, .skill-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 2rem;
+    background: rgba(34, 34, 34, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-card-front {
+    background: linear-gradient(145deg, rgba(34, 34, 34, 0.9), rgba(51, 51, 51, 0.9));
+}
+
+.skill-card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(145deg, rgba(51, 51, 51, 0.9), rgba(34, 34, 34, 0.9));
+}
+
+.skill-icon {
+    width: 80px;
+    height: 80px;
+    margin: 1.5rem 0;
+    filter: drop-shadow(0 0 8px rgba(117, 239, 255, 0.3));
+}
+
+.skill-card h3 {
+    font-family: 'minecraft', sans-serif;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.skill-card-back ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.skill-card-back li {
+    font-family: 'minecraft', sans-serif;
+    color: #fff;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.skill-card {
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative; /* Add this */
+    z-index: 1; /* Add this */
+}
+
+.skill-card:hover {
+    z-index: 2; /* Add this */
+}
+
+.skill-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    z-index: inherit; /* Add this */
+}
+
+.skill-card-front, .skill-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 2rem;
+    background: rgba(34, 34, 34, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-logo {
+    width: 150px; /* adjust size as needed */
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Special navbar style for home page */
+.navbar-home {
+    justify-content: left;
+    padding: 0.1rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Projects Page Styles */
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.5rem;
+    background: rgba(34, 34, 34, 0.8);
+    border: 1px solid #ffffff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'minecraft', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(117, 239, 255, 0.1);
+}
+
+.filter-btn.active {
+    background: #ffffff;
+    color: #222;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card-inner {
+    background: rgba(34, 34, 34, 0.8);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.project-card-inner:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    font-family: 'minecraft', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background: #ffffff;
+    color: #222;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    font-family: 'minecraft', sans-serif;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: 'Poppins', sans-serif;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tags span {
+    background: rgba(117, 239, 255, 0.1);
+    color: #ffffff;
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-family: 'minecraft', sans-serif;
+}
+
+/* Contact Page Styles */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #fff;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.contact-info {
+    background: rgba(34, 34, 34, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info h2 {
+    font-family: 'minecraft', sans-serif;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    color: #ffffff;
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+}
+
+.contact-details {
+    margin-top: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.contact-item img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background: rgba(34, 34, 34, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'minecraft', sans-serif;
+    color: #ffffff;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.form-group input:focus + .form-line,
+.form-group textarea:focus + .form-line {
+    width: 100%;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #75efff;
+    padding: 1rem 2rem;
+    font-family: 'minecraft', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background: #ffffffb2;
+    color: #222;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.interests-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.interest-gif-container {
+    flex-shrink: 0;
+    width: 200px; /* adjust based on your GIF size */
+    height: 200px; /* adjust based on your GIF size */
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.interest-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.interest-gif-container:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .interests-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .interest-gif-container {
+        margin: 2rem auto;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-filters {
+        flex-wrap: wrap;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* If you want the buttons to stack on mobile */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+/* If you want the buttons to stack on mobile */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .cta-button {
+        width: 200px; /* or whatever width you prefer */
+    }
+}
+
+/* Animation for card appearance */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .profile-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .skill-card {
+        height: 250px;
+    }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .profile-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .profile-text h1 {
+        font-size: 2rem;
+    }
+
+    .profile-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+	.navbar {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1rem;
+	}
+	.navbar-toggle {
+		display: block;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		position: relative;
+		z-index: 2;
+	}
+	.navbar-toggle span {
+		display: block;
+		height: 4px;
+		width: 100%;
+		background: #fff;
+		margin: 6px 0;
+		border-radius: 2px;
+		transition: 0.4s;
+	}
+	.navbar-links {
+		flex-direction: column;
+		width: 100%;
+		gap: 0;
+		display: none;
+		background: #222;
+		border-radius: 0 0 10px 10px;
+		padding: 1rem 0;
+	}
+	.navbar-links.active {
+		display: flex;
+	}
+	.navbar-links li {
+		width: 100%;
+		text-align: left;
+		padding: 0.5rem 2rem;
+	}
+}
+
+/* Page Navigation Buttons */
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 400px;
+}
+
+.nav-button {
+    padding: 0.5rem 1.5rem;
+    background: rgba(34, 34, 34, 0.8);
+    border: 1px solid #ffffff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'minecraft', sans-serif;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nav-button:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.nav-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Project Detail Page Styles */
+.project-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.project-detail-content {
+    background: rgba(34, 34, 34, 0.8);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.project-slider {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.project-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.project-video {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Custom video controls styling */
+.project-video::-webkit-media-controls {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.project-video::-webkit-media-controls-panel {
+    padding: 0 10px;
+}
+
+.project-video::-webkit-media-controls-play-button,
+.project-video::-webkit-media-controls-volume-slider,
+.project-video::-webkit-media-controls-mute-button,
+.project-video::-webkit-media-controls-timeline {
+    filter: invert(1);
+}
+
+.swiper-slide {
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px;
+}
+
+.swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+}
+
+.project-detail-info {
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.project-detail-info h2 {
+    font-family: 'minecraft', sans-serif;
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    color: #ffffff;
+}
+
+.project-detail-info p {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-detail-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.project-detail-info ul li {
+    font-family: 'Poppins', sans-serif;
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.project-detail-info ul li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #75efff;
+}
+
+.detail-tags {
+    margin: 1.5rem 0;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.project-links .project-link {
+    flex: 1;
+    text-align: center;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .project-slider {
+        height: 300px;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .project-links .project-link {
+        width: 100%;
+        max-width: none;
+    }
+}

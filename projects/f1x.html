@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>F1 + X Project - Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-logo">
+            <img src="../assets/Sprite-0002.gif" alt="Gabroni's">
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-navigation">
+        <a href="../projects.html" class="nav-button">← Back to Projects</a>
+    </div>
+
+    <main class="project-detail-container">
+        <h1 class="section-title">F1 + X</h1>
+        
+        <div class="project-detail-content">
+            <!-- Slider main container -->
+            <div class="swiper project-slider">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <img src="../assets/f1x/pic1.png" alt="F1+X Screenshot 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/f1x/pic2.png" alt="F1+X Screenshot 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/f1x/pic3.png" alt="F1+X Screenshot 3">
+                    </div>
+                </div>
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="project-detail-info">
+                <h2>About the Project</h2>
+                <p>F1 + X is a modern laundromat app designed to streamline the laundry experience. It provides users with a convenient way to manage their laundry needs, track orders, and schedule pickups/deliveries.</p>
+
+                <h2>Features</h2>
+                <ul>
+                    <li>Real-time order tracking</li>
+                    <li>Schedule pickup and delivery</li>
+                    <li>Multiple payment options</li>
+                    <li>Service customization</li>
+                </ul>
+
+                <h2>Technologies Used</h2>
+                <div class="project-tags detail-tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/sky1rk/F1-X.git" target="_blank" class="project-link">View on GitHub</a>
+                    <a href="https://f1x-demo.example.com" target="_blank" class="project-link">Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.project-slider', {
+            // Optional parameters
+            loop: true,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+
+            // Auto play
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Navbar toggle
+        const toggle = document.getElementById('navbar-toggle');
+        const links = document.getElementById('navbar-links');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

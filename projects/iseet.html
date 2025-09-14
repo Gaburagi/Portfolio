@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>AlgoRHYTHM Project - Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-logo">
+            <img src="../assets/Sprite-0002.gif" alt="Gabroni's">
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span></span>
+            <span></span>   
+            <span></span>
+        </div>
+        <ul class="navbar-links" id="navbar-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-navigation">
+        <a href="../projects.html" class="nav-button">← Back to Projects</a>
+    </div>
+
+    <main class="project-detail-container">
+        <h1 class="section-title">AlgoRHYTHM</h1>
+        
+        <div class="project-detail-content">
+            <!-- Slider main container -->
+            <div class="swiper project-slider">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <img src="../assets/iseet/algorhythm1.png" alt="iSEE-T Screenshot 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/iseet/algorhythm2.png" alt="iSEE-T Screenshot 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/iseet/algorhytm3.png" alt="iSEE-T Screenshot 3">
+                    </div>
+                </div>
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="project-detail-info">
+                <h2>About the Project</h2>
+                <p>AlgoRHYTHM is a rhythm game, that challenges your sense of rhythm by having you perform actions, like hitting buttons or dancing, with precise timing to match a song.</p>
+
+                <h2>Features</h2>
+                <ul>
+                    <li>Dynamic note generation</li>
+                    <li>Multiple difficulty levels</li>
+                    <li>Accuracy scoring</li>
+                    <li>Beat-matching system</li>
+                </ul>
+
+                <h2>Technologies Used</h2>
+                <div class="project-tags detail-tags">
+                    <span>Python</span>
+                    <span>Pygame</span>
+                    <span>Canva</span>
+                    <span>Ibispaint</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/sky1rk/iSEE-T.git" target="_blank" class="project-link">View on GitHub</a>
+                    <a href="https://iseet-demo.example.com" target="_blank" class="project-link">Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.project-slider', {
+            loop: true,
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Navbar toggle
+        const toggle = document.getElementById('navbar-toggle');
+        const links = document.getElementById('navbar-links');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

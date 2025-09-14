@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Contact - Portfolio</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/Sprite-0002.gif" alt="Gabroni's">
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul> -->
+    </nav>
+
+    <div class="page-navigation">
+        <a href="projects.html" class="nav-button">← Projects</a>
+        <a href="index.html" class="nav-button">Home →</a>
+    </div>
+
+    <main class="contact-container">
+        <h1 class="section-title">Get In Touch</h1>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <h2>Let's Connect!</h2>
+                <p>Feel free to reach out for collaborations or just a friendly chat.</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/Gaburagi" class="social-link">
+                        <img src="assets/github.png"GitHub">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gabriel-diana-3a34772b6" class="social-link">
+                        <img src="assets/linkedin.png" alt="LinkedIn">
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/gaburagi.gg" class="social-link">
+                        <img src="assets/facebook.png" alt="Twitter">
+                        <span>Facebook</span>
+                    </a>
+                </div>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <img src="assets/gmail.png" alt="Email">
+                        <p>gabmdiana@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <img src="assets/ph.png" alt="Location">
+                        <p>Philippines</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form fade-in" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="form-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="form-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                    <div class="form-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <div class="form-line"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Navbar toggle
+        const toggle = document.getElementById('navbar-toggle');
+        const links = document.getElementById('navbar-links');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+
+        // Form animation
+        const formGroups = document.querySelectorAll('.form-group');
+        formGroups.forEach(group => {
+            const input = group.querySelector('input, textarea');
+            const line = group.querySelector('.form-line');
+
+            input.addEventListener('focus', () => {
+                line.style.width = '100%';
+            });
+
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    line.style.width = '0';
+                }
+            });
+        });
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

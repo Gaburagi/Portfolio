@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Projects - Portfolio</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="assets/Sprite-0002.gif" alt="Gabroni's">
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- <ul class="navbar-links" id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul> -->
+    </nav>
+
+    <div class="page-navigation">
+        <a href="about.html" class="nav-button">← About</a>
+        <a href="contact.html" class="nav-button">Contact →</a>
+    </div>
+
+    <main class="projects-container">
+        <h1 class="section-title">My Projects</h1>
+        
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="game">Game Dev</button>
+            <button class="filter-btn" data-filter="design">UI/UX</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card" data-category="web">
+                <div class="project-card-inner">
+                    <div class="project-image">
+                        <img src="assets/f1x/logo.png" alt="Project 1">
+                        <div class="project-overlay">
+                            <a href="projects/f1x.html" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>F1 + X</h3>
+                        <p>A laundromat app</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card" data-category="game">
+                <div class="project-card-inner">
+                    <div class="project-image">
+                        <img src="assets/iseet/logo.png" alt="Project 1">
+                        <div class="project-overlay">
+                            <a href="projects/iseet.html" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AlgoRHYTHM</h3>
+                        <p>A room assigning project</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Canva</span>
+                            <span>Ibispaint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="game">
+                <div class="project-card-inner">
+                    <div class="project-image">
+                        <img src="assets/kalye/logo.png" alt="Project 1">
+                        <div class="project-overlay">
+                            <a href="projects/kalye-corazon.html" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Kalye Corazon</h3>
+                        <p>A game set in the heart of Ilo-ilo</p>
+                        <div class="project-tags">
+                            <span>Unity</span>
+                            <span>C#</span>
+                            <span>Game Dev</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="design">
+                <div class="project-card-inner">
+                    <div class="project-image">
+                        <img src="assets/wvsu/WVSOLUTIONS.png" alt="Project 1">
+                        <div class="project-overlay">
+                            <a href="projects/wvsolutions.html" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>WVSolutions</h3>
+                        <p>An e-commerce website for the students of WVSU</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more project cards with different data-category values -->
+        </div>
+    </main>
+
+    <script>
+        // Navbar toggle
+        const toggle = document.getElementById('navbar-toggle');
+        const links = document.getElementById('navbar-links');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+
+        // Project filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        // Function to filter projects
+        function filterProjects(filter) {
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.classList.add('visible'), 10);
+                } else {
+                    card.classList.remove('visible');
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // Show all projects by default when page loads
+        window.addEventListener('load', () => {
+            filterProjects('all');
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                filterProjects(filter);
+            });
+        });
+    </script>
+</body>
+</html>
