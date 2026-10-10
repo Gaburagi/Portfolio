@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Enter Gabriel Diana's room and explore games, design, and development on an interactive retro computer.">
-<link rel="icon" href="assets/FAVICON.svg"><link rel="stylesheet" href="room.css">
+<link rel="icon" href="assets/FAVICON.svg"><link rel="stylesheet" href="room.css"><link rel="stylesheet" href="phone.css"><link rel="stylesheet" href="atmosphere.css">
 <title>Gabriel Diana — The Room</title>
 </head>
 <body>
 <main id="room" aria-label="A dark room with Gabriel's computer">
 <div id="scene" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div>
-<header class="room-header"><a class="wordmark" href="index.html">GD<span> / PERSONAL SPACE</span></a><button id="skip" class="quiet">Go straight to desktop ↗</button></header>
+<header class="room-header"><a class="wordmark" href="index.html">GD<span> / PERSONAL SPACE</span></a><button id="use-phone" class="quiet">Use phone</button><button id="skip" class="quiet">Go straight to desktop ↗</button></header>
 <div class="room-caption"><span class="eyebrow">A SMALL CORNER OF MY WORLD</span><h1>Somewhere<br>after hours.</h1><p>One room. One computer.<br>A few things I've made.</p></div>
 <div class="enter-prompt"><button id="enter" class="enter-button">⏻ &nbsp; Use computer <span class="key">ENTER ↵</span></button><p id="scene-status" role="status">Turning on the monitor…</p></div>
 <section id="board-panel" hidden aria-labelledby="board-heading">
@@ -47,5 +47,5 @@
 <div class="scanlines" aria-hidden="true"></div>
 </section>
 <noscript><div class="no-script">Explore Gabriel's portfolio: <a href="about.html">About</a> · <a href="projects.html">Projects</a> · <a href="contact.html">Contact</a>. Enable JavaScript to enter the computer.</div></noscript>
-<script src="memories.js" defer></script><script src="boards.js" defer></script><script src="desktop.js" defer></script><script type="module" src="room.js"></script>
+<script src="memories.js" defer></script><script src="boards.js" defer></script><script src="desktop.js" defer></script><script src="phone.js" defer></script><script src="atmosphere.js" defer></script>
 </body></html>

@@ -58,7 +58,7 @@ export function createRoomBoards(THREE, scene, boards) {
         const aspect = texture.image.width / texture.image.height, targetAspect = 1.08 / .9;
         if (aspect > targetAspect) { texture.repeat.x = targetAspect / aspect; texture.offset.x = (1 - texture.repeat.x) / 2; }
         else { texture.repeat.y = aspect / targetAspect; texture.offset.y = (1 - texture.repeat.y) / 2; }
-        pictureMaterial.map = texture; pictureMaterial.needsUpdate = true; initialTexture.dispose();
+        pictureMaterial.map = texture; pictureMaterial.needsUpdate = true; initialTexture.dispose();window.dispatchEvent(new Event('room-scene-change'));
       }, undefined, () => { /* Keep the labeled card clickable when a photo is missing. */ });
       const caption = new THREE.Mesh(new THREE.PlaneGeometry(1.08, .22), new THREE.MeshBasicMaterial({ map: textTexture([card.title]) }));
       caption.position.set(0, -.48, .02); photo.add(caption);
@@ -114,8 +114,8 @@ export function createRoomBoards(THREE, scene, boards) {
       const ctx=screenCanvas.getContext('2d');const texture=new THREE.CanvasTexture(screenCanvas);texture.colorSpace=THREE.SRGBColorSpace;
       const screen=new THREE.Mesh(new THREE.PlaneGeometry(3.23,2.04),new THREE.MeshBasicMaterial({map:texture}));
       screen.position.set(-.23,.06,.69);group.add(screen);target(screen,0);
-      let selected=0,request=0;
-      function tune(index) {
+      let selected=0,request=0;const imageCache=new Map();
+      function tune(index,loadImage=true) {
         selected=index;screen.userData.memory.index=index;
         const card=board.cards[index];if(!card)return;const version=++request;
         function paint(img) {
@@ -123,14 +123,15 @@ export function createRoomBoards(THREE, scene, boards) {
           if(img){const scale=Math.min(900/img.width,470/img.height);ctx.drawImage(img,(960-img.width*scale)/2,62+(470-img.height*scale)/2,img.width*scale,img.height*scale);}
           ctx.fillStyle='#e0e0e0';ctx.font='24px monospace';ctx.fillText(`CH ${String(index+1).padStart(2,'0')} / PROJECT CHANNEL`,30,40);
           ctx.font='30px monospace';ctx.fillText(card.title,30,575,880);ctx.font='17px monospace';ctx.fillStyle='#aaaaaa';ctx.fillText('CLICK SCREEN FOR DETAILS & LINKS',30,612);
-          for(let y=0;y<640;y+=4){ctx.fillStyle='#00000020';ctx.fillRect(0,y,960,1);}texture.needsUpdate=true;
+          for(let y=0;y<640;y+=4){ctx.fillStyle='#00000020';ctx.fillRect(0,y,960,1);}texture.needsUpdate=true;window.dispatchEvent(new Event('room-scene-change'));
         }
-        paint();if(card.image){const image=new Image();image.onload=()=>{if(version===request)paint(image);};image.src=card.image;}
+        paint();if(loadImage&&card.image){if(imageCache.has(card.image)){paint(imageCache.get(card.image));return;}const image=new Image();image.onload=()=>{imageCache.set(card.image,image);if(version===request)paint(image);};image.src=card.image;}
       }
       board.cards.forEach((card,index)=>{
         const knob=new THREE.Mesh(new THREE.CylinderGeometry(.12,.12,.09,20),pinMaterial);knob.rotation.x=Math.PI/2;knob.position.set(1.72,.96-index*.3,.7);group.add(knob);target(knob,index);
       });
-      label('PROJECT TV',2,.22,-.2,1.65,.6);tune(0);
+      label('PROJECT TV',2,.22,-.2,1.65,.6);tune(0,false);
+      window.addEventListener('room-corner-change',e=>{if(e.detail===board.id)tune(selected);});
       window.addEventListener('room-item-selected',e=>{if(e.detail.id===board.id)tune(e.detail.index);});
     }
     const normal=new THREE.Vector3(0,0,1).applyAxisAngle(new THREE.Vector3(0,1,0),placement.rotation);

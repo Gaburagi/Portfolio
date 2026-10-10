@@ -1,0 +1,10 @@
+.sound-toggle{font:10px monospace;letter-spacing:0;padding:10px;min-height:40px;color:#aaa;border:1px solid #454545;background:#151515;white-space:nowrap}
+.sound-toggle[aria-pressed=true]{color:#eee;border-color:#888}.room-number .sound-toggle{margin-left:12px}.desktop-top{gap:10px}.phone-dock>span{display:none}
+.enter-button,.board-photo-link,.project-item,.room-navigation button,.phone-app-icon{transition:background-color .18s,border-color .18s,box-shadow .18s,transform .18s}
+.enter-button:hover,.board-photo-link:hover,.project-item:hover{box-shadow:0 0 18px #ffffff0b}
+.enter-button:active,.board-photo-link:active,.project-item:active{transform:translateY(1px)}
+#scene{transition:filter .18s}#scene.object-pressed{filter:brightness(1.08)}
+#memory-dialog[open]{animation:content-arrive .2s ease-out}.window{animation:content-arrive .2s ease-out}#phone-app:not([hidden]),#phone-home:not([hidden]){animation:content-arrive .22s ease-out}
+@keyframes content-arrive{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+@media(max-width:760px){.room-number{font-size:0}.room-number .status-dot{display:none}.room-number .sound-toggle{font-size:9px;margin:0}.desktop-top>span{font-size:9px}.desktop-top .sound-toggle{font-size:9px;padding:6px}.phone-dock{gap:12px}}
+@media(prefers-reduced-motion:reduce){#memory-dialog[open],.window,#phone-app:not([hidden]),#phone-home:not([hidden]){animation:none}#scene.object-pressed{filter:none}}

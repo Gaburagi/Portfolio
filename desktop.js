@@ -71,6 +71,7 @@
     windows.append(el); tasks.append(task); opened.set(id,{el,task}); focusWindow(id);
   }
   async function enter(skip = false) {
+    if(window.deviceMode?.phone){await window.phoneExperience.enter(skip);return;}
     if (entering || !desktop.hidden) return; entering = true;
     room.classList.add('entering');
     if (!skip && window.roomExperience) await window.roomExperience.approach();
@@ -78,17 +79,18 @@
     if (!visited) { openApp('welcome'); visited = true; } else document.querySelector('.desktop-icons button').focus();
     window.dispatchEvent(new Event('desktop-enter'));
   }
-  function leave() { desktop.hidden = true; room.hidden = false; room.classList.remove('entering'); setMenu(false); window.roomExperience?.reset(); document.querySelector('#enter').focus(); window.dispatchEvent(new Event('desktop-leave')); }
-  document.addEventListener('click', e => { const button=e.target.closest('[data-app]'); if(button)openApp(button.dataset.app); if(!e.target.closest('#start-menu,#start'))setMenu(false); });
+  function leave() { desktop.hidden = true; room.hidden = false; room.classList.remove('entering'); setMenu(false); document.querySelector('#enter').focus(); window.dispatchEvent(new Event('desktop-leave')); }
+  document.addEventListener('click', e => { const button=e.target.closest('[data-app]'); if(button && !button.closest('#phone'))openApp(button.dataset.app); if(!e.target.closest('#start-menu,#start'))setMenu(false); });
   document.querySelector('#enter').onclick=()=>enter(); document.querySelector('#skip').onclick=()=>enter(true);
   document.querySelector('#leave').onclick=leave; document.querySelector('#start-leave').onclick=leave;
   start.onclick=()=>setMenu(menu.hidden);
   document.addEventListener('keydown', e => {
     if(document.querySelector('#memory-dialog')?.open) return;
     if(e.key==='Escape' && !desktop.hidden) { if(!menu.hidden){setMenu(false);start.focus();} else leave(); }
-    if(e.key==='Enter' && desktop.hidden && (!window.roomBoards || window.roomBoards.corner==='desk') && !e.target.closest('button,a,input')) enter();
+    if(e.key==='Enter' && !room.hidden && desktop.hidden && (!window.roomBoards || window.roomBoards.corner==='desk') && !e.target.closest('button,a,input')) enter();
   });
   window.addEventListener('resize',()=>opened.forEach(({el})=>{if(innerWidth>760){el.style.left=Math.max(5,Math.min(parseFloat(el.style.left),innerWidth-el.offsetWidth-5))+'px';el.style.top=Math.max(57,Math.min(parseFloat(el.style.top),innerHeight-130))+'px';}}));
   const tick=()=>{const now=new Date();const clock=document.querySelector('#clock');clock.textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});clock.dateTime=now.toISOString();};tick();setInterval(tick,30000);
   window.enterComputer=()=>enter();
+  window.portfolioApps = apps;
 })();
