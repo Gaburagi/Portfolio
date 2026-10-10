@@ -6,3 +6,60 @@
 @media(max-width:480px){.window{left:5px!important;top:57px!important;width:calc(100% - 10px);max-height:calc(100svh - 107px)}.project-grid{grid-template-columns:1fr 1fr}.window-controls button{width:29px;height:29px}.titlebar{min-height:37px}.skill-list{grid-template-columns:80px 1fr}.room-caption{top:14%}.room-caption p{display:none}}
 @media(max-height:620px){.desktop-icons{gap:0;top:56px}.desktop-icons button{min-height:64px}.room-caption{top:19%}#room{min-height:420px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.scanlines{display:none}}
+
+/* Corners of the room and the photographs pinned to their boards. */
+.desktop-icons{max-height:calc(100svh - 130px);overflow-y:auto;scrollbar-width:thin;padding-right:5px;gap:8px}
+#room[data-current-corner=certificates] .photo-preview{border:2px solid #888;background:#282828;border-radius:0;transform:none}
+#room[data-current-corner=certificates] .photo-preview:after{content:'';width:18px;height:4px;left:50%;top:70%;transform:translateX(-50%);border-radius:0;background:#aaa}
+#room[data-current-corner=projects] .photo-preview{border:3px solid #555;border-radius:4px}
+#room[data-current-corner=projects] .photo-preview:after{display:none}
+.room-navigation{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:4px;padding:5px;background:#101010e8;border:1px solid #393939;z-index:3;max-width:94%}
+.room-navigation button{padding:12px 17px;font:10px monospace;white-space:nowrap;color:#777;border:1px solid transparent}
+.room-navigation button span{color:#aaa;margin-left:7px}
+.room-navigation button:hover{background:#272727}
+.room-navigation button[aria-pressed=true]{background:#292929;border-color:#555;color:#ddd}
+.room-navigation button[aria-pressed=true] span{color:#fff}
+.enter-prompt{bottom:24%}
+.entering .room-navigation{visibility:hidden}
+.viewing-board .room-caption,.viewing-board .enter-prompt{display:none}
+#board-panel{position:absolute;left:6%;top:24%;width:260px;max-height:calc(100% - 290px);overflow:auto;padding:5px 10px 14px 5px;scrollbar-width:thin}
+#board-heading{font:400 clamp(26px,3vw,42px)/1.08 Arial,sans-serif;letter-spacing:-1.5px;margin:20px 0}
+#board-intro{font:12px/1.8 Arial,sans-serif;color:#aaa;margin-bottom:22px}
+#board-photo-links{display:grid;gap:9px}
+.board-photo-link{display:flex;text-align:left;align-items:center;gap:12px;padding:9px;border:1px solid #424242;background:#141414dc;font:11px/1.5 monospace}
+.board-photo-link:hover{border-color:#aaa;background:#242424}
+.photo-preview{display:grid;place-items:center;flex-shrink:0;width:50px;height:42px;border:3px solid #c9c7c2;border-bottom-width:8px;background:#303030;color:#aaa;font:5px/1.5 monospace;text-align:center;position:relative}
+.photo-preview img{width:100%;height:100%;object-fit:cover;min-height:0}
+.pinned .photo-preview:after{content:'';position:absolute;top:-5px;left:45%;width:5px;height:5px;border-radius:50%;background:#eee;box-shadow:1px 1px 2px #000}
+.taped .photo-preview:after{content:'';position:absolute;top:-5px;left:25%;width:20px;height:7px;background:#a4a39abd;transform:rotate(-8deg)}
+.viewing-board.room-fallback .fallback-pc{display:none}
+.room-fallback #board-panel{left:50%;transform:translateX(-50%);width:min(720px,90%);top:18%;max-height:calc(100% - 245px)}
+.room-fallback #board-photo-links{grid-template-columns:repeat(3,1fr);gap:20px;padding:15px;background:#242423;border:8px solid #484848}
+.room-fallback .board-photo-link{flex-direction:column;padding:12px;transform:rotate(-2deg)}
+.room-fallback .board-photo-link:nth-child(even){transform:rotate(2deg)}
+.room-fallback .photo-preview{width:100%;height:95px;font-size:8px;border-width:6px;border-bottom-width:18px}
+#memory-dialog{padding:0;border:1px solid #555;width:min(900px,92vw);max-height:88svh;overflow:auto;background:#151515;color:#ddd;box-shadow:0 30px 120px #000;grid-template-columns:1.1fr 1fr}
+#memory-dialog[open]{display:grid}
+#memory-dialog::backdrop{background:#000b;backdrop-filter:blur(6px)}
+#memory-close{position:absolute;right:12px;top:10px;z-index:1;background:#1a1a1a;border:1px solid #666;width:36px;height:36px;font:24px monospace}
+.memory-image-wrap{padding:40px 24px;background:#0b0b0b;display:flex;align-items:center;justify-content:center;min-width:0;min-height:320px}
+#memory-image{width:100%;max-height:65svh;object-fit:contain;border:9px solid #c9c7c2;border-bottom-width:30px;transform:rotate(-2deg)}
+#memory-placeholder{width:100%;aspect-ratio:4/3;display:grid;place-items:center;background:linear-gradient(145deg,#303030,#171717);border:10px solid #c9c7c2;border-bottom-width:30px;transform:rotate(-3deg);font:12px monospace;color:#bbb;letter-spacing:2px}
+.memory-copy{padding:60px 30px 30px;min-width:0}
+#memory-title{font:400 28px/1.2 Arial,sans-serif;letter-spacing:-1px;margin:18px 0;overflow-wrap:anywhere}
+#memory-meta{font:11px/1.8 monospace;color:#aaa}
+#memory-description{font:14px/1.9 Arial,sans-serif;white-space:pre-line;color:#bcbcbc;overflow-wrap:anywhere}
+.memory-pagination{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:30px;padding-top:18px;border-top:1px solid #393939;font:10px monospace;color:#aaa}
+.memory-pagination button{padding:10px 0}
+@media(min-width:761px) and (max-width:1050px){#board-panel{left:4%;width:210px}}
+@media(max-width:760px){
+ .room-navigation{bottom:80px;width:94%;display:grid;grid-template-columns:repeat(4,1fr);gap:0}.room-navigation button{padding:8px 2px;font-size:9px}.room-navigation button span{display:block;margin:5px 0 0;font-size:9px}
+ #board-panel{top:90px;left:6%;width:88%;max-height:none;overflow:visible;pointer-events:none;padding:0}
+ #board-heading{font-size:27px;margin:12px 0 8px}#board-intro{font-size:11px;line-height:1.6;max-width:360px;margin:0}
+ #board-photo-links{position:fixed;left:6%;right:6%;bottom:145px;grid-template-columns:repeat(3,1fr);gap:6px;max-height:110px;overflow:auto;pointer-events:auto}
+ .board-photo-link{padding:8px;gap:6px;font-size:9px;flex-direction:column;align-items:flex-start}.photo-preview{width:32px;height:27px;font-size:0}
+ .room-fallback #board-panel{top:100px;transform:none;left:6%;width:88%;max-height:none}
+ .room-fallback #board-photo-links{padding:12px;bottom:145px;max-height:40svh;gap:8px}.room-fallback .board-photo-link{padding:4px}.room-fallback .photo-preview{height:65px;font-size:6px}
+ #memory-dialog[open]{grid-template-columns:1fr}.memory-image-wrap{min-height:0;padding:30px 35px 20px}#memory-image{max-height:32svh}#memory-placeholder{max-width:260px;font-size:10px}.memory-copy{padding:25px}#memory-title{font-size:25px}.memory-pagination{margin-top:18px}
+}
+@media(max-height:600px) and (min-width:761px){#board-panel{top:95px;max-height:calc(100% - 235px)}#board-heading{font-size:26px;margin:12px 0}#board-intro{display:none}.board-photo-link{padding:4px}.room-navigation{bottom:66px}.room-footer{bottom:16px}}

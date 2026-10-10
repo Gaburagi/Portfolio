@@ -26,6 +26,13 @@
     ['laundry','F1 + X','A laundromat application for managing laundry needs, tracking orders, and scheduling pickups and deliveries.','assets/f1x/pic1.png','projects/f1x.html'],
     ['campus','WVSolutions','A university marketplace connecting students and staff to buy, sell, and trade goods and services.','assets/wvsu/image.png','projects/wvsolutions.html']
   ].forEach(([id,title,desc,img,url]) => { apps[id] = {title: title + ' — Project', status:'Project preview · Full case study opens in a new tab', body:`<h3>${title}</h3><img src="${img}" alt="${title} screenshot" style="width:100%;max-height:240px;object-fit:contain;background:#080808"><p>${desc}</p><a class="retro-button" href="${url}" target="_blank" rel="noopener">Full project ↗</a><button class="retro-button" data-app="projects">All projects</button>`}; });
+  // The computer is the complete catalog; room objects use these same records.
+  const escapeText = value => { const el=document.createElement('span');el.textContent=value;return el.innerHTML; };
+  for (const [sectionId, appId] of [['events','bulletin'],['certificates','certificates'],['projects','projects']]) {
+    const section=window.portfolioBoards.find(item=>item.id===sectionId);
+    apps[appId]={title:section.title+' — Explorer',status:section.cards.length+' items · Also available in the room',body:`<h3>${escapeText(section.title)}</h3><p>${escapeText(section.intro)}</p><div class="project-grid">${section.cards.map((card,index)=>`<button class="project-item" data-memory-section="${sectionId}" data-memory-index="${index}">${card.image?`<img src="${escapeText(card.image)}" alt="" loading="lazy">`:''}<strong>${escapeText(card.title)}</strong><small>${escapeText(card.category || card.role || 'Open details')}</small></button>`).join('')}</div>`};
+  }
+  document.addEventListener('click',event=>{const button=event.target.closest('[data-memory-section]');if(button)window.roomBoards.openMemory(button.dataset.memorySection,Number(button.dataset.memoryIndex),button);});
   function setMenu(show) { menu.hidden = !show; start.setAttribute('aria-expanded', String(show)); }
   function focusWindow(id, moveFocus = true) {
     const item = opened.get(id); if (!item) return;
@@ -77,8 +84,9 @@
   document.querySelector('#leave').onclick=leave; document.querySelector('#start-leave').onclick=leave;
   start.onclick=()=>setMenu(menu.hidden);
   document.addEventListener('keydown', e => {
+    if(document.querySelector('#memory-dialog')?.open) return;
     if(e.key==='Escape' && !desktop.hidden) { if(!menu.hidden){setMenu(false);start.focus();} else leave(); }
-    if(e.key==='Enter' && desktop.hidden && !e.target.closest('button,a,input')) enter();
+    if(e.key==='Enter' && desktop.hidden && (!window.roomBoards || window.roomBoards.corner==='desk') && !e.target.closest('button,a,input')) enter();
   });
   window.addEventListener('resize',()=>opened.forEach(({el})=>{if(innerWidth>760){el.style.left=Math.max(5,Math.min(parseFloat(el.style.left),innerWidth-el.offsetWidth-5))+'px';el.style.top=Math.max(57,Math.min(parseFloat(el.style.top),innerHeight-130))+'px';}}));
   const tick=()=>{const now=new Date();const clock=document.querySelector('#clock');clock.textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});clock.dateTime=now.toISOString();};tick();setInterval(tick,30000);

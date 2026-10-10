@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,23 @@
 <header class="room-header"><a class="wordmark" href="index.html">GD<span> / PERSONAL SPACE</span></a><button id="skip" class="quiet">Go straight to desktop ↗</button></header>
 <div class="room-caption"><span class="eyebrow">A SMALL CORNER OF MY WORLD</span><h1>Somewhere<br>after hours.</h1><p>One room. One computer.<br>A few things I've made.</p></div>
 <div class="enter-prompt"><button id="enter" class="enter-button">⏻ &nbsp; Use computer <span class="key">ENTER ↵</span></button><p id="scene-status" role="status">Turning on the monitor…</p></div>
+<section id="board-panel" hidden aria-labelledby="board-heading">
+<span class="eyebrow" id="board-kicker"></span><h2 id="board-heading"></h2><p id="board-intro"></p>
+<div id="board-photo-links" aria-label="Photos on this board"></div>
+</section>
+<nav class="room-navigation" aria-label="Explore the room">
+<button data-corner="desk" aria-pressed="true">01 <span>Computer</span></button>
+<button data-corner="events" aria-pressed="false">02 <span>Bulletin board</span></button>
+<button data-corner="certificates" aria-pressed="false">03 <span>Certificates</span></button>
+<button data-corner="projects" aria-pressed="false">04 <span>Project TV</span></button>
+</nav>
 <footer class="room-footer"><span>GABRIEL DIANA<br><small>GAME DEVELOPER & UI/UX DESIGNER</small></span><span class="room-number">ROOM 001 <span class="status-dot"></span></span></footer>
 </main>
+<dialog id="memory-dialog" aria-labelledby="memory-title">
+<button id="memory-close" aria-label="Close photo description">×</button>
+<div class="memory-image-wrap"><img id="memory-image" alt="" hidden><div id="memory-placeholder">YOUR PHOTO HERE</div></div>
+<div class="memory-copy"><span class="eyebrow" id="memory-category"></span><h2 id="memory-title"></h2><p id="memory-meta"></p><p id="memory-description"></p><div id="memory-extra-links"></div><a id="memory-link" class="retro-button" target="_blank" rel="noopener noreferrer" hidden>More about this ↗</a><div class="memory-pagination"><button id="memory-prev" aria-label="Previous photo">← Previous</button><span id="memory-count"></span><button id="memory-next" aria-label="Next photo">Next →</button></div></div>
+</dialog>
 <section id="desktop" hidden aria-label="Gabriel's desktop">
 <div class="desktop-top"><span>GABRONI OS <small> / PERSONAL COMPUTER</small></span><button id="leave" class="quiet">← Leave computer <span class="key">ESC</span></button></div>
 <nav class="desktop-icons" aria-label="Desktop folders">
@@ -21,6 +36,8 @@
 <button data-app="about"><span class="pixel-icon document" aria-hidden="true">≡</span>About Me.txt</button>
 <button data-app="skills"><span class="pixel-icon computer" aria-hidden="true">⌘</span>My Skills</button>
 <button data-app="contact"><span class="pixel-icon envelope" aria-hidden="true">✉</span>Contact</button>
+<button data-app="bulletin"><span class="pixel-icon folder" aria-hidden="true"></span>Bulletin Board</button>
+<button data-app="certificates"><span class="pixel-icon document" aria-hidden="true">?</span>Certificates</button>
 <button data-app="extras"><span class="pixel-icon document" aria-hidden="true">?</span>DO NOT OPEN</button>
 </nav>
 <div class="desktop-watermark" aria-hidden="true"><span>gd.</span><p>MADE OF CURIOSITY.<br>AND LATE NIGHTS.</p></div>
@@ -30,5 +47,5 @@
 <div class="scanlines" aria-hidden="true"></div>
 </section>
 <noscript><div class="no-script">Explore Gabriel's portfolio: <a href="about.html">About</a> · <a href="projects.html">Projects</a> · <a href="contact.html">Contact</a>. Enable JavaScript to enter the computer.</div></noscript>
-<script src="desktop.js" defer></script><script type="module" src="room.js"></script>
+<script src="memories.js" defer></script><script src="boards.js" defer></script><script src="desktop.js" defer></script><script type="module" src="room.js"></script>
 </body></html>

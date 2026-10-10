@@ -1,8 +1,10 @@
+import { createRoomBoards } from './room-boards-3d.js';
 // Keep the desktop independent of WebGL and of the external renderer download.
 const host = document.querySelector('#scene');
 const status = document.querySelector('#scene-status');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 function fallback() {
+  document.querySelector('#room').classList.add('room-fallback');
   host.replaceChildren();
   const pc = document.createElement('div'); pc.className = 'fallback-pc'; pc.textContent = '> GABRONI OS_';
   host.append(pc); status.textContent = 'The desktop is ready. Click Use computer to enter.';
@@ -53,6 +55,7 @@ try {
   const mouse=new THREE.Mesh(new THREE.SphereGeometry(.13,16,12),casing);mouse.scale.set(.8,.45,1.35);mouse.position.set(1.68,1.62,.67);scene.add(mouse);
   const cableCurve=new THREE.CatmullRomCurve3([new THREE.Vector3(1.68,1.58,.54),new THREE.Vector3(1.8,1.59,.1),new THREE.Vector3(1.4,1.59,-.5)]);
   scene.add(new THREE.Mesh(new THREE.TubeGeometry(cableCurve,20,.012,6,false),black));
+  const boards = createRoomBoards(THREE, scene, window.portfolioBoards || []);
   scene.add(new THREE.AmbientLight(0xffffff,.18));
   const glow=new THREE.PointLight(0xffffff,9,6,2);glow.position.set(.55,2.5,.75);scene.add(glow);
   const overhead=new THREE.SpotLight(0xffffff,28,14,.62,.85,1.8);overhead.position.set(1.5,6,2);overhead.target.position.set(.5,1,0);overhead.castShadow=true;overhead.shadow.mapSize.set(1024,1024);scene.add(overhead,overhead.target);
@@ -60,24 +63,53 @@ try {
   const pointer=new THREE.Vector2(); const raycaster=new THREE.Raycaster();
   let progress=0,zooming=false,done=null,paused=!document.querySelector('#desktop').hidden;
   const startPosition=new THREE.Vector3();const startLook=new THREE.Vector3();const look=new THREE.Vector3();
+  const viewPosition=new THREE.Vector3();const viewLook=new THREE.Vector3();
+  let corner=window.roomBoards?.corner || 'desk';
   function frameRoom(){const mobile=innerWidth<760;startPosition.set(mobile?2.7:4, mobile?3.3:3.45, mobile?10:8.7);startLook.set(mobile?.5:-.85,1.9,0);}
   frameRoom();camera.position.copy(startPosition);
-  window.roomExperience={approach:()=>new Promise(resolve=>{if(reducedMotion.matches){resolve();return;}zooming=true;done=resolve;}),reset:()=>{zooming=false;progress=0;paused=false;camera.position.copy(startPosition);}};
-  host.addEventListener('pointermove',e=>{const rect=host.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);host.style.cursor=raycaster.intersectObjects([screen]).length?'pointer':'default';});
+  viewPosition.copy(startPosition);viewLook.copy(startLook);
+  function updateView() {
+    const view=boards.views.get(corner);
+    if(!view){viewPosition.copy(startPosition);viewLook.copy(startLook);return;}
+    const mobile=innerWidth<760;
+    const aspect=host.clientWidth/host.clientHeight;
+    const distance=Math.max(mobile?7.2:6.9, 2.8 / (Math.tan(THREE.MathUtils.degToRad(21))*aspect),view.height*1.25);
+    viewPosition.copy(view.center).addScaledVector(view.normal,distance);
+    viewLook.copy(view.center);
+    if(mobile){viewLook.y+=.35;}else{viewLook.addScaledVector(view.tangent,-1.35);}
+  }
+  updateView();look.copy(startLook);
+  window.addEventListener('room-corner-change',event=>{corner=event.detail;pointer.set(0,0);updateView();});
+  window.roomExperience={approach:()=>new Promise(resolve=>{if(reducedMotion.matches){resolve();return;}zooming=true;done=resolve;}),reset:()=>{zooming=false;progress=0;paused=false;corner='desk';updateView();camera.position.copy(startPosition);look.copy(startLook);}};
+  function hitAt(event) {
+    const rect=host.getBoundingClientRect();
+    const coords=new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);
+    raycaster.setFromCamera(coords,camera);
+    return raycaster.intersectObjects(corner==='desk'?[screen]:boards.targets.filter(mesh=>mesh.userData.memory.boardId===corner))[0];
+  }
+  host.addEventListener('pointermove',e=>{const rect=host.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);host.style.cursor=hitAt(e)?'pointer':'default';});
   host.addEventListener('pointerleave',()=>pointer.set(0,0));
-  host.addEventListener('click',()=>{raycaster.setFromCamera(pointer,camera);if(raycaster.intersectObjects([screen]).length)window.enterComputer?.();});
-  const resize=()=>{frameRoom();camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight);};
+  host.addEventListener('click',event=>{if(zooming)return;const hit=hitAt(event);if(!hit)return;const memory=hit.object.userData.memory;if(memory)window.roomBoards?.openMemory(memory.boardId,memory.index);else window.enterComputer?.();});
+  const resize=()=>{frameRoom();updateView();camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight);};
   window.addEventListener('resize',()=>{if(!paused)resize();});
   window.addEventListener('desktop-enter',()=>paused=true);window.addEventListener('desktop-leave',()=>{paused=false;resize();});
   renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();renderer.setAnimationLoop(null);window.roomExperience=null;if(done)done();fallback();});
   let last=0;
   renderer.setAnimationLoop(time=>{
     const dt=Math.min((time-last)/1000,.05);last=time;if(paused||document.hidden)return;
+    boards.update(dt,reducedMotion.matches);
     if(zooming)progress=Math.min(1,progress+dt/1.35);
     const ease=progress*progress*(3-2*progress);
-    camera.position.copy(startPosition).lerp(new THREE.Vector3(.55,2.57,1.8),ease);
-    if(!reducedMotion.matches&&!zooming){camera.position.x+=pointer.x*.2;camera.position.y+=pointer.y*.08;}
-    look.copy(startLook).lerp(new THREE.Vector3(.55,2.57,0),ease);camera.lookAt(look);
+    if(zooming){
+      camera.position.copy(startPosition).lerp(new THREE.Vector3(.55,2.57,1.8),ease);
+      look.copy(startLook).lerp(new THREE.Vector3(.55,2.57,0),ease);
+    }else{
+      const blend=reducedMotion.matches?1:1-Math.exp(-dt*4.5);
+      const target=viewPosition.clone();
+      if(!reducedMotion.matches&&!document.querySelector('#memory-dialog').open){target.x+=pointer.x*.12;target.y+=pointer.y*.055;}
+      camera.position.lerp(target,blend);look.lerp(viewLook,blend);
+    }
+    camera.lookAt(look);
     renderer.render(scene,camera);
     if(progress===1&&done){const resolve=done;done=null;resolve();}
   });
