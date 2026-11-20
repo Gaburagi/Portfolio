@@ -46,11 +46,25 @@
     document.querySelector('#memory-title').textContent = card.title;
     document.querySelector('#memory-meta').textContent = [card.date, card.location, card.role].filter(Boolean).join(' · ');
     document.querySelector('#memory-description').textContent = card.description;
-    image.hidden = !card.image; placeholder.hidden = Boolean(card.image);
-    placeholder.textContent = currentBoard.kind === 'cabinet' ? 'CERTIFICATE PLACEHOLDER' : 'YOUR PHOTO HERE';
-    image.alt = card.alt || card.title;
-    image.onerror = () => { image.hidden = true; placeholder.hidden = false; placeholder.textContent = 'PHOTO UNAVAILABLE'; };
-    if (card.image) image.src = card.image; else image.removeAttribute('src');
+    const gallery = document.querySelector('#memory-gallery');
+    const galleryImages = [...new Set([card.image, ...(card.gallery || [])].filter(Boolean))];
+    const showImage = (path) => {
+      image.hidden = !path; placeholder.hidden = Boolean(path);
+      placeholder.textContent = currentBoard.kind === 'cabinet' ? 'CERTIFICATE PLACEHOLDER' : 'YOUR PHOTO HERE';
+      image.alt = card.alt || card.title;
+      image.onerror = () => { image.hidden = true; placeholder.hidden = false; placeholder.textContent = 'PHOTO UNAVAILABLE'; };
+      if (path) image.src = path; else image.removeAttribute('src');
+      gallery.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.image === path)));
+    };
+    gallery.replaceChildren();
+    gallery.hidden = galleryImages.length < 2;
+    galleryImages.forEach((path, index) => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.dataset.image = path; button.setAttribute('aria-label', `Show project screenshot ${index + 1}`);
+      const thumbnail = document.createElement('img'); thumbnail.src = path; thumbnail.alt = ''; thumbnail.loading = 'lazy';
+      button.append(thumbnail); button.onclick = () => showImage(path); gallery.append(button);
+    });
+    showImage(card.image || galleryImages[0]);
     const link = document.querySelector('#memory-link');
     link.hidden = true; link.removeAttribute('href');
     link.textContent = card.linkLabel || 'More about this ↗';
