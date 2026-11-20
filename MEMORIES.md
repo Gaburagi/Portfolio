@@ -15,6 +15,7 @@ Put photos in `assets/memories/` and certificates in `assets/certificates/` (cre
 
 Project records support `detailUrl` for the local case study and an optional `demoUrl` for a real playable/live project. Existing example.com demo placeholders are deliberately excluded from the TV. Repository/file URLs were reused from the existing portfolio, not independently verified. WVSolutions links to project files on Google Drive and is labeled accordingly.
 
+
 Certificate and story entries are labeled placeholders until you supply your own records. No events, awards, or work history have been invented. There are three cabinet drawers; keep three certificate records for the current model. Each can represent a certificate of your choice.
 
 Use the bottom navigation or Left/Right arrow keys to pan. Select an item to open details; Escape closes the popup. Previous/Next browses that collection and also changes the TV channel or active cabinet drawer. The computer provides access to the same content. Accessible item buttons remain available on mobile and if WebGL fails.

@@ -127,7 +127,8 @@ export function createRoomBoards(THREE, scene, boards) {
         }
         paint();if(loadImage&&card.image){if(imageCache.has(card.image)){paint(imageCache.get(card.image));return;}const image=new Image();image.onload=()=>{imageCache.set(card.image,image);if(version===request)paint(image);};image.src=card.image;}
       }
-      board.cards.forEach((card,index)=>{
+      // The model has four physical controls; the panel lists every project.
+      board.cards.slice(0, 4).forEach((card,index)=>{
         const knob=new THREE.Mesh(new THREE.CylinderGeometry(.12,.12,.09,20),pinMaterial);knob.rotation.x=Math.PI/2;knob.position.set(1.72,.96-index*.3,.7);group.add(knob);target(knob,index);
       });
       label('PROJECT TV',2,.22,-.2,1.65,.6);tune(0,false);

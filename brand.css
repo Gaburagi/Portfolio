@@ -1,0 +1,27 @@
+/* Replaces the text-only GD mark with the supplied icon while retaining the label. */
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0;
+}
+
+.wordmark::before {
+  content: '';
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  background: url('assets/brand-icon.ico') center / contain no-repeat;
+}
+
+.wordmark span {
+  margin-left: 0;
+}
+
+@media (max-width: 760px) {
+  .wordmark::before {
+    width: 29px;
+    height: 29px;
+    flex-basis: 29px;
+  }
+}
