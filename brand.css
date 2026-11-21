@@ -8,10 +8,10 @@
 
 .wordmark::before {
   content: '';
-  width: 31px;
-  height: 31px;
-  flex: 0 0 31px;
-  background: url('assets/brand-icon.ico') center / contain no-repeat;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  background: url('assets/logoNew.png') center / contain no-repeat;
 }
 
 .wordmark span {
@@ -20,8 +20,8 @@
 
 @media (max-width: 760px) {
   .wordmark::before {
-    width: 29px;
-    height: 29px;
-    flex-basis: 29px;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
   }
 }
